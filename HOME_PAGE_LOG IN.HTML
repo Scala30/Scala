@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME_PAGE_LOG IN</title>
+    <link rel="stylesheet" href="STYLE.css">
+</head>
+<body>
+
+
+
+    <div class="login-container">
+        <h2>Login</h2>
+
+    <form id="login-form">
+        <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required placeholder="Enter your username">
+        </div>
+            
+        <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+        </div>
+            
+               <button type="submit" id="login-button">Login</button>
+               <p id="lockout-message" class="error-message" style="display: none;">Please Wait for 10 seconds to try agin, Enter the correct username and password.</p>
+
+        </form>
+    </div>
+
+
+    <script type="text/javascript">
+        let attemptCount = 0;
+        let lockoutTimer;
+
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+           
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            
+            const correctUsername = 'admin123';
+            const correctPassword = 'admin123';
+
+            
+            if (attemptCount >= 1) {
+                
+                document.getElementById('login-button').disabled = true;
+                document.getElementById('lockout-message').style.display = 'block';
+                
+               
+                lockoutTimer = setTimeout(() => {
+                    attemptCount = 0;  
+
+                    document.getElementById('login-button').disabled = false;
+                    document.getElementById('lockout-message').style.display = 'none';
+                }, 10000); 
+                
+                return; 
+            }
+
+            if (username === correctUsername && password === correctPassword) {
+                
+                alert('Login successful!, please click the okay button to redirect in to the home page.');
+                
+                 window.location.href = 'file:///C:/Users/USER/Documents/WEB%202/LD1FINALS_2D_GARCIA/LD2_GARCIA_JOHN%20EMEL.HTML';  
+            } else {
+                
+                attemptCount++;
+              alert('INVALID  USERNAME OR PASSWORD, PLEASE CLICK OKAY AND RE-CLICK THE LOG IN BUTTON TO TRY AGAIN'); 
+                document.getElementById('login-error').style.display = 'block';
+                 
+
+            }
+        });
+
+
+
+
+
+    </script>
+
+</body>
+</html>
